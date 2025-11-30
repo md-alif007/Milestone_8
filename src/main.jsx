@@ -1,19 +1,28 @@
-import { StrictMode } from 'react';
+import { Component, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.jsx';
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import About from './Components/About/About.jsx';
+import Root from './Components/Root/Root.jsx';
+import Home from './Components/Home/Home.jsx';
+import Mobiles from './Components/Mobiles/Mobiles.jsx';
+import Laptops from './Components/Laptops/Laptops.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello World</div>,
+    Component: Root,
+    children: [
+      { index: true, Component: Home },
+      { path: "Mobiles", Component: Mobiles },
+      { path: "Laptops", Component: Laptops }
+    ]
   },
   {
-    path:"About",
-    element : <About></About>
+    path: "About",
+    element: <About></About>
   }
 ]);
 
