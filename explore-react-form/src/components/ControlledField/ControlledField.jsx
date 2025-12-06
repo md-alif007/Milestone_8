@@ -2,27 +2,34 @@ import React, { useState } from 'react';
 
 const ControlledField = () => {
 
-    const [password , setPassword] = useState('');
-    const [error , setError] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-    const handlePasswordOnChange = (e) =>{
+    const handlePasswordOnChange = (e) => {
         console.log(e.target.value);
         setPassword(e.target.value);
-        
-        // if (password.length < 6) {
-        //     setError("password must be 6 char")
-        // } else {
-        //     setError('');
-        // }
-    }
 
-    const handleSubmit = (e) => {        
-        e.preventDefault();
         if (password.length < 6) {
             setError("password must be 6 char")
         } else {
             setError('');
         }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(email,password);
+
+        if (password.length < 6) {
+            setError("password must be 6 char");
+        } else {
+            setError('');
+        }
+    }
+
+    const handleEmailChangeHandler = (e) => {
+        setEmail(e.target.value);
     }
 
     return (
@@ -32,7 +39,8 @@ const ControlledField = () => {
                     type="email"
                     name="email"
                     placeholder='enter email'
-
+                    onChange={handleEmailChangeHandler}
+                    defaultValue={email}
                     required
                 />
                 <br />
@@ -40,7 +48,7 @@ const ControlledField = () => {
                     type="password"
                     name="password"
                     placeholder='enter password'
-                    defaultValue ={password}
+                    defaultValue={password}
                     onChange={handlePasswordOnChange}
                     required
                 />
